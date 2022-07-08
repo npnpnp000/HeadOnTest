@@ -1,16 +1,18 @@
 package com.headontest.view.fragment.treatment_date
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.github.jjobes.slidedatetimepicker.SlideDateTimeListener
+import com.github.jjobes.slidedatetimepicker.SlideDateTimePicker
 import com.headontest.application.UserApplication
 import com.headontest.databinding.FragmentTreatmentDateBinding
-import com.headontest.viewModel.ViewModelFactory
 import com.headontest.viewModel.TreatmentDateViewModel
+import com.headontest.viewModel.ViewModelFactory
+import java.util.*
 
 
 class TreatmentDateFragment : Fragment() {
@@ -40,6 +42,14 @@ class TreatmentDateFragment : Fragment() {
 //        mainViewModel.insertMessageToRoom(Message((0..100).random().toString()))
 
         return binding?.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+
+
     }
 
     override fun onDestroy() {

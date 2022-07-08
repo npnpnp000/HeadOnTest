@@ -88,17 +88,13 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     // MapBox
-//    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:6.0.1'
-//    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.5.0'
-//
-//    implementation 'com.mapbox.mapboxsdk:mapbox-sdk-core:6.4.0'
-//    implementation 'androidx.annotation:annotation:1.4.0'
-
     implementation 'com.mapbox.maps:android:10.6.0'
 
     // ToolTip
-    implementation 'com.github.douglasjunior:android-simple-tooltip:1.1.0'
     implementation "com.github.skydoves:balloon:1.4.6"
+
+//    SlideDateTimePicker
+    implementation 'com.github.jjobes:SlideDateTimePicker:v1.0.4'
 
 
 }

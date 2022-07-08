@@ -8,4 +8,5 @@
     <string name="show_on_map">הצג על המפה</string>
     <string name="treatment_date">מועד טיפול</string>
     <string name="mapbox_access_token">sk.eyJ1IjoibnBucG5wMDAwIiwiYSI6ImNsNWFxazhiczAwOTgzYnBldmUxMXNteXkifQ.6Ovh7D0QsLCLhVbKqCzFGA</string>
+    <string name="map_title">מפה</string>
 </resources>

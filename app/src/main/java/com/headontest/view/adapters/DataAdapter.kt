@@ -1,12 +1,9 @@
 package com.headontest.view.adapters
 
 import android.content.Context
-import android.graphics.Color
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.TooltipCompat
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.adviserall22spdaslld.model.response.Data
@@ -17,7 +14,6 @@ import com.skydoves.balloon.ArrowPositionRules
 import com.skydoves.balloon.Balloon
 import com.skydoves.balloon.BalloonAnimation
 import com.skydoves.balloon.BalloonSizeSpec
-import io.github.douglasjunior.androidSimpleTooltip.SimpleTooltip
 
 
 class DataAdapter(val context: Context) : RecyclerView.Adapter<DataAdapter.ViewHolder>()  {
@@ -36,38 +32,7 @@ class DataAdapter(val context: Context) : RecyclerView.Adapter<DataAdapter.ViewH
             val address = "${data.City}, ${data.Street} ${data.House_number}"
             binding.addressTxt.text = address
             binding.addressTxt.setOnClickListener {
-//                TooltipCompat.setTooltipText(it,address)
-//                SimpleTooltip.Builder(context)
-//                    .anchorView(it)
-//                    .text(address)
-//                    .gravity(Gravity.TOP)
-//                    .animated(false)
-//                    .transparentOverlay(true)
-//                    .backgroundColor(Color.WHITE)
-//                    .modal(true)
-//                    .contentView(R.layout.tool_tip,R.id.toolTip_txt)
-//                    .arrowDrawable(R.drawable.arrow)
-//                    .build()
-//                    .show()
-
-                val balloon = Balloon.Builder(context)
-                    .setHeight(BalloonSizeSpec.WRAP)
-                    .setWidth(BalloonSizeSpec.WRAP)
-                    .setText(address)
-                    .setTextColorResource(R.color.black)
-                    .setTextSize(15f)
-//                    .setIconDrawableResource(R.drawable.arrow)
-                    .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
-                    .setArrowSize(10)
-                    .setArrowPosition(0.5f)
-                    .setPadding(12)
-                    .setCornerRadius(8f)
-                    .setBackgroundColorResource(R.color.white)
-                    .setBalloonAnimation(BalloonAnimation.ELASTIC)
-//                    .setLifecycleOwner(context.ac.lifecycle)
-                    .build()
-
-                balloon.showAlignTop(it)
+                setBalloonToolTip(it, address) // set Tool Tip
             }
 
             binding.serialTxt.text = data.ID.toString()
@@ -86,6 +51,27 @@ class DataAdapter(val context: Context) : RecyclerView.Adapter<DataAdapter.ViewH
 //            val root = binding.root
 
         }
+    }
+
+    private fun setBalloonToolTip(it: View, address: String) {
+        val balloon = Balloon.Builder(context)
+            .setHeight(BalloonSizeSpec.WRAP)
+            .setWidth(BalloonSizeSpec.WRAP)
+            .setText(address)
+            .setTextColorResource(R.color.black)
+            .setTextSize(15f)
+//                    .setIconDrawableResource(R.drawable.arrow)
+            .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
+            .setArrowSize(10)
+            .setArrowPosition(0.5f)
+            .setPadding(12)
+            .setCornerRadius(8f)
+            .setBackgroundColorResource(R.color.white)
+            .setBalloonAnimation(BalloonAnimation.ELASTIC)
+//                    .setLifecycleOwner(context.ac.lifecycle)
+            .build()
+
+        balloon.showAlignTop(it)
     }
 
 

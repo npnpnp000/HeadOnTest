@@ -18,6 +18,7 @@ import androidx.annotation.DrawableRes
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.headontest.R
 import com.headontest.application.UserApplication
 import com.headontest.databinding.AncorPointBinding
@@ -28,15 +29,14 @@ import com.mapbox.geojson.Point
 import com.mapbox.maps.*
 import com.mapbox.maps.extension.localization.localizeLabels
 import com.mapbox.maps.plugin.annotation.annotations
-import com.mapbox.maps.plugin.annotation.generated.PointAnnotationOptions
-import com.mapbox.maps.plugin.annotation.generated.createPointAnnotationManager
+import com.mapbox.maps.plugin.annotation.generated.*
+import com.mapbox.maps.plugin.delegates.listeners.OnCameraChangeListener
 import com.mapbox.maps.viewannotation.ViewAnnotationManager
 import com.mapbox.maps.viewannotation.viewAnnotationOptions
 import com.skydoves.balloon.ArrowPositionRules
 import com.skydoves.balloon.Balloon
 import com.skydoves.balloon.BalloonAnimation
 import com.skydoves.balloon.BalloonSizeSpec
-import io.github.douglasjunior.androidSimpleTooltip.SimpleTooltip
 import java.util.*
 
 
@@ -49,6 +49,8 @@ class MapFragment : Fragment() {
 
     private lateinit var mapboxMap: MapboxMap
     private lateinit var viewAnnotationManager: ViewAnnotationManager
+    private lateinit var viewAnnotation: View
+    private lateinit var pointAnnotation: CircleAnnotation
      var mapView: MapView? =null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -93,35 +95,108 @@ class MapFragment : Fragment() {
         }else{
             Log.e("arguments","null")
         }
+
+        baseSetting()
+
+
         mapView = binding?.mapView
 
-        mapView?.getMapboxMap()?.apply {
-            loadStyleUri(Style.MAPBOX_STREETS,{ style ->
-                val locale = resources.configuration.locale
-                style.localizeLabels(locale)
-            })
-            // Add the view annotation at the center point
-            addViewAnnotation(Point.fromLngLat(longitude, latitude), mapView!!)
+        // Create view annotation manager
+        viewAnnotationManager = binding?.mapView?.viewAnnotationManager!!
+
+        mapboxMap = binding?.mapView?.getMapboxMap()!!.apply {
+            // Load a map style
+
+            loadStyleUri(Style.MAPBOX_STREETS) {
+                val cameraPosition = CameraOptions.Builder()
+                    .zoom(14.0)
+                    .center(Point.fromLngLat(longitude, latitude))
+                    .build()
+                // set camera position
+                this.setCamera(cameraPosition)
+                // Get the center point of the map
+                val center = this.cameraState.center
+                // Add the view annotation at the center point
+                addViewAnnotation(center)
+            }
         }
-//         define camera position
-        val cameraPosition = CameraOptions.Builder()
-            .zoom(9.0)
-            .center(Point.fromLngLat(longitude, latitude))
-            .build()
-//         set camera position
-        mapView?.getMapboxMap()?.setCamera(cameraPosition)
-//        addAnnotationToMap(longitude,latitude)
+            val balloon = Balloon.Builder(requireContext())
+                  .setHeight(BalloonSizeSpec.WRAP)
+                  .setWidth(BalloonSizeSpec.WRAP)
+                  .setText("address")
+                  .setTextColorResource(R.color.black)
+                  .setTextSize(15f)
+      //                    .setIconDrawableResource(R.drawable.arrow)
+                  .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
+                  .setArrowSize(10)
+                  .setArrowPosition(0.5f)
+                  .setPadding(12)
+                  .setCornerRadius(8f)
+                  .setBackgroundColorResource(R.color.white)
+                  .setBalloonAnimation(BalloonAnimation.ELASTIC)
+      //                    .setLifecycleOwner(context.ac.lifecycle)
+                  .build()
+
+        // Create an instance of the Annotation API and get the CircleAnnotationManager.
+        val annotationApi = mapView?.annotations
+        val circleAnnotationManager = annotationApi?.createCircleAnnotationManager(mapView!!)
+// Set options for the resulting circle layer.
+        val circleAnnotationOptions: CircleAnnotationOptions = CircleAnnotationOptions()
+            // Define a geographic coordinate.
+            .withPoint(Point.fromLngLat(longitude, latitude))
+            // Style the circle that will be added to the map.
+            .withCircleRadius(8.0)
+            .withCircleColor("#ee4e8b")
+            .withCircleStrokeWidth(2.0)
+            .withCircleStrokeColor("#ffffff")
+
+// Add the resulting circle to the map.
+        pointAnnotation =  circleAnnotationManager?.create(circleAnnotationOptions) !!
+
+
+//        mapView?.getMapboxMap()?.apply {
+//            loadStyleUri(Style.MAPBOX_STREETS,{ style ->
+//                val locale = resources.configuration.locale
+//                style.localizeLabels(locale)
+//            })
+//            // Add the view annotation at the center point
+//            addViewAnnotation(Point.fromLngLat(longitude, latitude), mapView!!)
+//        }
+////         define camera position
+//        val cameraPosition = CameraOptions.Builder()
+//            .zoom(9.0)
+//            .center(Point.fromLngLat(longitude, latitude))
+//            .build()
+////         set camera position
+//        mapView?.getMapboxMap()?.setCamera(cameraPosition)
+////        addAnnotationToMap(longitude,latitude)
 
        }
-    private fun addViewAnnotation(point: Point, this_mapView: MapView) {
-        viewAnnotationManager = this_mapView.viewAnnotationManager
+
+    private fun baseSetting() {
+
+        binding?.include?.topFragTxt?.text = getString(R.string.map_title)
+
+        binding?.include?.topCloseImg?.setOnClickListener {
+           findNavController().popBackStack()
+        }
+    }
+
+    private fun addViewAnnotation(point: Point/*, this_mapView: MapView*/) {
+//        viewAnnotationManager = this_mapView.viewAnnotationManager
         // Define the view annotation
-        val viewAnnotation = viewAnnotationManager.addViewAnnotation(
+         viewAnnotation = viewAnnotationManager.addViewAnnotation(
             // Specify the layout resource id
             resId = R.layout.ancor_point,
             // Set any view annotation options
             options = viewAnnotationOptions {
                 geometry(point)
+                visible(true)
+                offsetX(-40)
+
+//                associatedFeatureId(pointAnnotation.featureIdentifier)
+//                anchor(ViewAnnotationAnchor.BOTTOM)
+//                offsetY((pointAnnotation.circleRadius)!!.toInt())
             }
         )
         val balloon = Balloon.Builder(requireContext())
@@ -140,9 +215,9 @@ class MapFragment : Fragment() {
             .setBalloonAnimation(BalloonAnimation.ELASTIC)
 //                    .setLifecycleOwner(context.ac.lifecycle)
             .build()
-
+//        balloon.showAlignTop(viewAnnotation)
         AncorPointBinding.bind(viewAnnotation)
-        balloon.showAlignTop(viewAnnotation)
+
     }
 
     private fun bitmapFromDrawableRes(context: Context, @DrawableRes resourceId: Int) =

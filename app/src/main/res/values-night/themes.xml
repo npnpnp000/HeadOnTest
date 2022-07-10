@@ -2,11 +2,15 @@
     <!-- Base application theme. -->
     <style name="Theme.MyTaskGame" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryDark">@color/purple_700</item>
+        <item name="colorPrimary">@color/sub</item>
+        <item name="colorPrimaryDark">@color/sub</item>
         <item name="colorAccent">@color/teal_200</item>
         <!-- Customize your theme here. -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="NumberPickerStyle">
+        <item name="colorControlNormal">@color/main</item>
     </style>
 </resources>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="74dp"
+    android:layout_height="98dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:gravity="center">
@@ -18,26 +19,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/serial_number"
-            android:textSize="14sp"
+            android:textSize="@dimen/card_text_size"
             android:textColor="@color/main"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="11dp"
+            android:layout_marginTop="@dimen/card_parent_Bottom"
+            android:layout_marginBottom="@dimen/card_middel"
             android:textAlignment="center"/>
 
 
 
 
         <TextView
-            android:layout_width="80dp"
-            android:layout_height="18dp"
+            android:layout_width="106dp"
+            android:layout_height="24dp"
             android:id="@+id/serial_txt"
             android:text="0"
-            android:textSize="14sp"
+            android:textSize="19sp"
             android:textColor="@color/black"
             android:textAlignment="center"
-            android:layout_marginBottom="11dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginBottom="@dimen/card_parent_Bottom"
+            android:layout_marginTop="@dimen/card_middel"
             android:ellipsize="end"
             android:maxLines="1"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -58,25 +60,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/customer_address"
-            android:textSize="14sp"
+            android:textSize="@dimen/card_text_size"
             android:textColor="@color/main"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="11dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="@dimen/card_parent_Bottom"
+            android:layout_marginBottom="@dimen/card_middel"
             android:textAlignment="center"/>
 
 
         <TextView
             android:layout_width="80dp"
-            android:layout_height="18dp"
+            android:layout_height="wrap_content"
             android:id="@+id/address_txt"
             android:text="@string/customer_address"
-            android:textSize="14sp"
+            android:textSize="@dimen/card_text_size"
             android:textColor="@color/black"
             android:textAlignment="center"
-            android:layout_marginBottom="11dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginBottom="@dimen/card_parent_Bottom"
+            android:layout_marginTop="@dimen/card_middel"
             android:ellipsize="end"
             android:maxLines="1"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -99,25 +101,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/treatment_date"
-            android:textSize="14sp"
+            android:textSize="@dimen/card_text_size"
             android:textColor="@color/main"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="11dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="@dimen/card_parent_Bottom"
+            android:layout_marginBottom="@dimen/card_middel"
             android:textAlignment="center"/>
 
         <ImageView
             android:id="@+id/treatmentDate_img"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="@dimen/icon_width"
+            android:layout_height="@dimen/icon_height"
             android:src="@drawable/ic_baseline_access_alarms_24"
             android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginBottom="11dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginBottom="@dimen/card_parent_Bottom"
+            android:layout_marginTop="@dimen/card_middel"
             android:contentDescription="@string/treatment_date" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -133,26 +135,26 @@
             android:id="@+id/showOnMap_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/card_parent_Bottom"
             android:text="@string/show_on_map"
-            android:textSize="14sp"
+            android:layout_marginBottom="@dimen/card_middel"
+            android:textAlignment="center"
             android:textColor="@color/main"
+            android:textSize="@dimen/card_text_size"
             android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="11dp"
-            android:layout_marginBottom="8dp"
-            android:textAlignment="center"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/showOnMap_img"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="@dimen/icon_width"
+            android:layout_height="@dimen/icon_height"
             android:src="@drawable/ic_baseline_location_on_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginBottom="11dp"
-            android:layout_marginTop="8dp"
-            android:contentDescription="TODO" />
+            android:layout_marginBottom="@dimen/card_parent_Bottom"
+            android:layout_marginTop="@dimen/card_middel"
+            android:contentDescription="@string/show_on_map" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

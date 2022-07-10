@@ -1,6 +1,5 @@
 package com.headontest.viewModel
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.adviserall22spdaslld.model.response.Data
 import com.headontest.model.Repository
@@ -13,7 +12,6 @@ class MainActivityViewModel(private val repository: Repository) : ViewModel(){
 
 
     fun getRequest() = viewModelScope.launch {
-        Log.e("MainActivityViewModel","launch")
         allDataLiveData.value = repository.getRequest().data
     }
 }

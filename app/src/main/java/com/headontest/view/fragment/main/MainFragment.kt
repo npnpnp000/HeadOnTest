@@ -39,7 +39,7 @@ class MainFragment : Fragment() {
         mainViewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
         mainActivityViewModel = ViewModelProvider(requireActivity(), viewModelFactory).get(MainActivityViewModel::class.java)
 
-        adapter = DataAdapter(requireContext())
+        adapter = DataAdapter(requireContext()) // installing of list adapter
     }
 
     override fun onCreateView(
@@ -49,17 +49,15 @@ class MainFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentMainBinding.inflate(inflater, container, false)
 
-//        mainViewModel.insertMessageToRoom(Message((0..100).random().toString()))
         setDataObserver()
 
         return binding?.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setList()
+        setList() // setting of recycler list
     }
 
 
@@ -71,16 +69,15 @@ class MainFragment : Fragment() {
     private fun setDataObserver() {
         mainActivityViewModel.allDataLiveData.observe(viewLifecycleOwner,{ list ->
             list?.let {
-                adapter.setData(it)
+                adapter.setData(it)  // when data changed set the list (from the adapter)
             }
         })
     }
 
     private fun setList() {
-        Log.e("setList",mainActivityViewModel.allDataLiveData.value.toString())
-        binding?.listItem?.layoutManager = LinearLayoutManager(requireContext())
-        binding?.listItem?.adapter = adapter
-        adapter.setData(mainActivityViewModel.allDataLiveData.value)
+        binding?.listItem?.layoutManager = LinearLayoutManager(requireContext()) // default layoutManager
+        binding?.listItem?.adapter = adapter  // add the adapter to the list
+        adapter.setData(mainActivityViewModel.allDataLiveData.value) // first data set
     }
 
 

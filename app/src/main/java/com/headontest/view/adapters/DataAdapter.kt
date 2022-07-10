@@ -31,24 +31,24 @@ class DataAdapter(val context: Context) : RecyclerView.Adapter<DataAdapter.ViewH
 
             val address = "${data.City}, ${data.Street} ${data.House_number}"
             binding.addressTxt.text = address
-            binding.addressTxt.setOnClickListener {
+            // add
+            binding.addressCol.setOnClickListener {
                 setBalloonToolTip(it, address) // set Tool Tip
             }
 
             binding.serialTxt.text = data.ID.toString()
-
+            // set move to map fragment when click on show on map field
             binding.showOnMapCol.setOnClickListener{
                 val action =
-                    MainFragmentDirections.actionMainFragmentToMapFragment(data.Latitude.toFloat(),data.Longitude.toFloat())   // set action navigate to main fragment
+                    MainFragmentDirections.actionMainFragmentToMapFragment(data.Latitude.toFloat(),data.Longitude.toFloat(),address)   // set action navigate to main fragment
                 binding.root.findNavController().navigate(action)
             }
-
+            // set move to map fragment when click on treatment date field
             binding.treatmentDateCol.setOnClickListener {
                 val action =
                     MainFragmentDirections.actionMainFragmentToTreatmentDateFragment(data.ID)  // set action navigate to main fragment
                 binding.root.findNavController().navigate(action)
             }
-//            val root = binding.root
 
         }
     }
@@ -60,7 +60,6 @@ class DataAdapter(val context: Context) : RecyclerView.Adapter<DataAdapter.ViewH
             .setText(address)
             .setTextColorResource(R.color.black)
             .setTextSize(15f)
-//                    .setIconDrawableResource(R.drawable.arrow)
             .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
             .setArrowSize(10)
             .setArrowPosition(0.5f)
@@ -68,7 +67,6 @@ class DataAdapter(val context: Context) : RecyclerView.Adapter<DataAdapter.ViewH
             .setCornerRadius(8f)
             .setBackgroundColorResource(R.color.white)
             .setBalloonAnimation(BalloonAnimation.ELASTIC)
-//                    .setLifecycleOwner(context.ac.lifecycle)
             .build()
 
         balloon.showAlignTop(it)
@@ -85,9 +83,8 @@ class DataAdapter(val context: Context) : RecyclerView.Adapter<DataAdapter.ViewH
        return list.size
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        if(list[position]!= null){
-            holder.bind(list[position]!!)
-        }
+            holder.bind(list[position])
+
     }
 }
 

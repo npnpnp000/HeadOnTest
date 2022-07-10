@@ -8,16 +8,16 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#C60000</color>
-    <color name="white_9">#FEFFEE</color>
 
     <color name="main">#234ba6</color>
-    <color name="sub">#abc741</color>
+    <color name="sub">#b90938</color>
+    <color name="borders">#DCDFE8</color>
 
     <array name="colors_new">
         <item>#636f6e</item>
-        <item>#abc741</item>
+        <item>#b90938</item>
         <item>#636f6e</item>
-        <item>#abc741</item>
+        <item>#b90938</item>
     </array>
 </resources>
 

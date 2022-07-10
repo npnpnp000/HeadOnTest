@@ -1,10 +1,8 @@
 package com.headontest.view.activity
 
-import android.Manifest
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -28,14 +26,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
-        val userApplication = application as UserApplication
+        val userApplication = application as UserApplication // get the app application
 
-        viewModelFactory = ViewModelFactory(userApplication.repository,null)
+        viewModelFactory = ViewModelFactory(userApplication.repository,null) // get app view model factory
+        // make or get (if already exists) view model
         mainActivityViewModel = ViewModelProvider(this, viewModelFactory).get(MainActivityViewModel::class.java)
 
         observerTest()
-        mainActivityViewModel.getRequest()
-
+        mainActivityViewModel.getRequest()  // start request to data
 
     }
 
@@ -59,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         createConfigurationContext(config)
         resources.updateConfiguration(config, resources.displayMetrics)
     }
-
+   // data tester
     private fun observerTest() {
         mainActivityViewModel.allDataLiveData.observe(this, { list ->
             Log.e("allDataLiveData.observe",list.toString())

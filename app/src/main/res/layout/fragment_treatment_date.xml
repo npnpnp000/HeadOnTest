@@ -5,14 +5,151 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TimePicker
-        android:id="@+id/timePicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:timePickerMode="spinner"
+    <include
+        android:id="@+id/includeInTimeDate"
+        layout="@layout/top_frag"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <RadioGroup
+        android:id="@+id/times_rdg"
+        android:layout_width="wrap_content"
+        android:layout_height="58dp"
+        android:layout_marginTop="17dp"
+        android:background="@drawable/time_tab_bg"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/includeInTimeDate">
 
+        <ToggleButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/time_tgb"
+            android:layout_margin="1dp"
+            android:background="@drawable/time_button_checked"
+            android:textColor="@drawable/time_button_text"
+            android:textOff="@string/time"
+            android:textOn="@string/time"
+            android:textSize="@dimen/btn_text_size" />
+
+        <ToggleButton
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_margin="1dp"
+            android:id="@+id/timeAndDate_tgb"
+            android:background="@drawable/time_button_checked"
+            android:checked="true"
+            android:textColor="@drawable/time_button_text"
+            android:textOff="@string/select_a_date_and_time"
+            android:textOn="@string/select_a_date_and_time"
+            android:textSize="@dimen/btn_text_size" />
+
+
+    </RadioGroup>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/timeDateMainPanel_csl"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/times_rdg">
+
+
+        <TextView
+            android:id="@+id/select_date_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="@string/select_date"
+            android:textAlignment="center"
+            android:textColor="@color/main"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+
+        <DatePicker
+            android:id="@+id/datePicker"
+            android:layout_width="match_parent"
+            android:layout_height="174dp"
+            android:layout_marginTop="22dp"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner"
+            android:scaleX="1.5"
+            android:theme="@style/NumberPickerStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/select_date_title" />
+
+        <TextView
+            android:id="@+id/select_time_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:text="@string/select_hour"
+            android:textAlignment="center"
+            android:textColor="@color/main"
+            android:textSize="21sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/datePicker" />
+
+
+        <NumberPicker
+            android:id="@+id/hoursPicker"
+            android:layout_width="wrap_content"
+            android:layout_height="131dp"
+            android:layout_marginTop="22dp"
+            android:orientation="vertical"
+            android:scaleX="1.5"
+            android:theme="@style/NumberPickerStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/select_time_title" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
+            android:layout_marginTop="41dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hoursPicker">
+
+            <Button
+                android:id="@+id/ok_time_date_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="13dp"
+                android:background="@drawable/bg_btn_bottom_ok_selected"
+                android:text="@string/ok"
+                android:textColor="@drawable/bg_btn_text_ok"
+                android:textSize="@dimen/btn_text_size" />
+
+            <Button
+                android:id="@+id/cancel_time_date_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="13dp"
+                android:background="@drawable/bg_btn_bottom_cancel_selected"
+                android:text="@string/cancel"
+                android:textColor="@drawable/bg_btn_text_cancel"
+                android:textSize="@dimen/btn_text_size" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

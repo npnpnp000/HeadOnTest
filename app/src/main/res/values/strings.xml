@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Head On Test</string>
+    <string name="error">Error</string>
+    <string name="ok">OK</string>
+    <string name="serial_number">Serial Number</string>
+    <string name="customer_address">Customer address</string>
+    <string name="treatment_date">Treatment date</string>
+    <string name="show_on_map">Show on map</string>
+    <string name="mapbox_access_token">sk.eyJ1IjoibnBucG5wMDAwIiwiYSI6ImNsNWFxazhiczAwOTgzYnBldmUxMXNteXkifQ.6Ovh7D0QsLCLhVbKqCzFGA</string>
+    <string name="map_title">Map</string>
+    <string name="select_a_date_and_time">Select a date and time</string>
+    <string name="time">time</string>
+    <string name="select_date">Select Date</string>
+    <string name="select_hour">Select Hour</string>
+    <string name="cancel">cancel</string>
+    <string name="date_of_treatment">Date of treatment</string>
+    <string name="halo_Israel">Halo Israel</string>
+
+</resources>

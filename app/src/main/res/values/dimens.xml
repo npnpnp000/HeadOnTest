@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="card_parent_Bottom">14dp</dimen>
-    <dimen name="card_middel">10dp</dimen>
-    <dimen name="card_text_size">16sp</dimen>
-    <dimen name="icon_width">18dp</dimen>
-    <dimen name="icon_height">18dp</dimen>
-    <dimen name="btn_text_size">21sp</dimen>
-</resources>

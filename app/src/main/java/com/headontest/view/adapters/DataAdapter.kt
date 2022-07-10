@@ -33,7 +33,7 @@ class DataAdapter(val context: Context) : RecyclerView.Adapter<DataAdapter.ViewH
             binding.addressTxt.text = address
             // add
             binding.addressCol.setOnClickListener {
-                setBalloonToolTip(it, address) // set Tool Tip
+                setBalloonToolTip(binding.addressTxt, address) // set Tool Tip
             }
 
             binding.serialTxt.text = data.ID.toString()
